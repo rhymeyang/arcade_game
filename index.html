@@ -2,12 +2,70 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Effective JavaScript: Frogger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frogger</title>
+    <!-- <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap-grid.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
+    
+    <div class="title"><h1>Frogger</h1></div>
+    <section class="game-detail">
+        <div class="character"  id="character" >Characters</div>        
+    </section>
+    
+    <content id='canvas-content'></content> 
+    
+    <div class="pop" id="character-pop" hidden="true">
+        <div class="popbackground"></div>
+        <div class="popcontent">
+            
+            <table class="character-grid" id="character-grid" select="">
+                <tr>
+                    <td><img class="character-item" src="images/char-boy.png"></td>
+                    <td><img class="character-item" src="images/char-cat-girl.png"></td>
+                    <td><img class="character-item" src="images/char-horn-girl.png"></td>
+                </tr>
+                <tr>
+                    <td><img class="character-item" src="images/char-pink-girl.png"></td>
+                    <td><img class="character-item" src="images/char-princess-girl.png"></td>
+                    <td></td>
+                </tr>
+                
+            </table>
+            
+            <div class="character-close">
+                <h3>Choose characters you like</h3>
+                <br/>
+                <div id="character-pop-close">Close</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pop" id="win-pop"  hidden="true">
+        <div class="popbackground"></div>
+
+        <div class="popcontent">
+            <h3>You Win!!!</h3>
+            <div>
+                <img class="stars" src="images/Star.png">
+            </div>
+            <br/>
+            <div id="win-pop-close">Close</div>
+
+        </div>
+    </div>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
+    <script src="js/actions.js"></script>
 </body>
 </html>

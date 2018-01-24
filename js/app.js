@@ -5,17 +5,39 @@ const MaxCols = 5;
 const ImgHeight = 83;
 const ImgWidth = 101;
 
-// 这是我们的玩家要躲避的敌人
-class Enemy {
-    constructor() {
-        // 敌人的图片，用一个我们提供的工具函数来轻松的加载文件
-        this.sprite = 'images/enemy-bug.png';
-        // 敌人初始位置
-        // 范围0-4
-        this.x = Math.floor(Math.random() * MaxCols);
-        // 范围 1-3
-        // 和Player使用同一坐标系，方便处理
-        this.y = Math.floor(Math.random() * 3) + 1;
+/**
+* @description base class for Enemy & Player
+* @constructor
+* @param {string} sprite - 对象图片相对路径
+* @param {float} x - 对象初始位置
+* @param {float} y - 对象初始位置
+*/
+class baseClass{
+    constructor(sprite, x, y) {
+        // 对象图片
+        this.sprite = sprite;
+        // 对象初始位置
+        this.x = x;
+        this.y = y;
+    }
+
+    render(ctx) {
+        // 此为游戏必须的函数，用来在屏幕上画出对象
+        ctx.drawImage(Resources.get(this.sprite), this.x * ImgWidth, this.y * ImgHeight - 20);
+    }
+
+}
+
+/**
+* @description 玩家要躲避的敌人
+* @constructor
+*/
+class Enemy extends baseClass{
+    constructor() {        
+        super('images/enemy-bug.png',
+            Math.floor(Math.random() * MaxCols), // 范围0-4
+            Math.floor(Math.random() * 3) + 1);   // 范围 1-3,和Player使用同一坐标系，方便处理
+        
         // 范围 1-2
         this.speedRate =Math.random()*2 +1;
     }
@@ -34,37 +56,31 @@ class Enemy {
         }
     }
 
-    render(ctx) {
-        // 此为游戏必须的函数，用来在屏幕上画出敌人
-        ctx.drawImage(Resources.get(this.sprite), this.x * ImgWidth, this.y * ImgHeight - 20);
-    }
 }
 
 
-
-// 现在实现你自己的玩家类
-// 这个类需要一个 update() 函数， render() 函数和一个 handleInput()函数
-class Player {
+/**
+* @description 玩家类
+* @constructor
+*/
+class Player extends baseClass{
     constructor() {
-        // 玩家图片
-        this.sprite = 'images/char-boy.png';
-        // 玩家初始位置
-        // 位置范围, x 0-4, y 0-5
-        this.x = Math.floor(MaxCols/2);
-        this.y = MaxRows -1;
+        super('images/char-boy.png',
+            Math.floor(MaxCols/2), 
+            MaxRows -1);        
     }
     update() {
-        
+        if (this.y === 0){
+            this.reset();
+            document.getElementById("win-pop").hidden=false;
+        }
         
     }
     reset(){
         this.x = 2;
         this.y = 5;
     }
-    render(ctx) {
-        // 此为游戏必须的函数，用来在屏幕上画出玩家
-        ctx.drawImage(Resources.get(this.sprite), this.x * ImgWidth, this.y * ImgHeight -15);
-    }
+    
     handleInput(direction){
         switch(direction){
             case 'left':
@@ -103,3 +119,4 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+

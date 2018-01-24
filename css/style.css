@@ -1,3 +1,82 @@
+html{
+    min-width: 1000px;    
+    min-height: 1000px;
+}
 body {
     text-align: center;
+}
+
+h1 h2 h3{
+    color: #063039;
+}
+
+ .game-detail {
+    align-self: center;
+    text-align: left;
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 355px;
+    margin-bottom: 10px;
+}
+
+ .game-detail .character{
+    align-self: center;
+    padding-left: 10px;
+ }
+  .game-detail .restart{
+    float: right;
+    padding-left: 10px;
+ }
+
+.game-detail::after
+    clear: both;
+ }
+
+
+.pop,#character-pop{
+    z-index: 10000;
+    display: none;
+
+}
+.popbackground {
+    display: inherit;
+    background-color: black;
+    left: 0px;
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;"
+}
+
+
+.popcontent {
+    display: inherit;
+    color：#063039;
+    padding: 20px;
+    background: linear-gradient(160deg, #2178a3 0%, #417792 100%);
+    border-radius: 10px;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    position: fixed;
+    left: 25%;
+    top: 20%;
+    width: 50%;
+    min-width: 550px;
+    height: 60%;
+    min-height: 400px;
+    text-align:center
+}
+
+div .character-grid{
+    float: left
+}
+
+div .character-close{
+    padding-top: 20%;
+    float: right
+}
+
+.stars{
+    height: 171px;
+    width: 101px;
 }

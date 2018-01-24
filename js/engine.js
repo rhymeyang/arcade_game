@@ -25,7 +25,8 @@ class Engine{
 
         this.canvas.width = 505;
         this.canvas.height = 606;
-        this.doc.body.appendChild(this.canvas);
+
+        this.doc.getElementById("canvas-content").appendChild(this.canvas);
         
         /* 把 canvas 上下文对象绑定在 global 全局变量上（在浏览器运行的时候就是 window
          * 对象。从而开发者就可以在他们的app.js文件里面更容易的使用它。
@@ -39,7 +40,11 @@ class Engine{
             'images/water-block.png',
             'images/grass-block.png',
             'images/enemy-bug.png',
-            'images/char-boy.png'
+            'images/char-boy.png',
+            'images/char-cat-girl.png',
+            'images/char-horn-girl.png',
+            'images/char-pink-girl.png',
+            'images/char-princess-girl.png'
         ]);
         let that = this;
         global.Resources.onReady(function init() {that.init();});
@@ -96,7 +101,7 @@ class Engine{
 
     checkCollisions(){
         for (let enemy of allEnemies){
-            if (Math.abs(enemy.x-player.x) <1 && Math.abs(enemy.y - player.y) <1){
+            if (Math.abs(enemy.x-player.x) <0.7 && Math.abs(enemy.y - player.y) <1){
                return true;
             }
         }
